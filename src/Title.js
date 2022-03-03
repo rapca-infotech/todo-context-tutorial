@@ -8,7 +8,6 @@ import { useTodo } from "./Context/TodoContext";
   const { todos } = useTodo();
   const [inputTodos, setInputTodos]= useState('');
   const [titles, setTitles] = useState([]);
-    
    const addTitle =() => { 
      if (!inputTodos) {
    }  else {
@@ -25,7 +24,8 @@ import { useTodo } from "./Context/TodoContext";
     onChange={(e) => setInputTodos (e.target.value) }
     />  
     <button onClick={addTitle}>Add</button>
-  
+    
+    {/* </input> */}
     <ol>
       {todos.map(u => (
         <div className="card" key={u.id}>
