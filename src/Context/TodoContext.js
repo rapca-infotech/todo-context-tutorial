@@ -1,36 +1,48 @@
 import React, { useContext, useState, useEffect, createContext } from "react";
 
-
 const TodoContext = createContext();
 
 export function TodoContextProvider({ children }) {
-  const [todos, setTodos] = useState([]);
- 
+  const [contextTodos, setContextTodos] = useState([]);
+
   useEffect(() => {
     async function fetchData() {
-        
       const response = await fetch(
         `https://jsonplaceholder.typicode.com/todos`
       );
       const data = await response.json();
 
       console.log(data);
-      setTodos(data);
+      setContextTodos(data);
     }
     fetchData();
   }, []);
-  
+
+  const addTodo = ({ userId, id, title, completed }) => {
+    setContextTodos((prev) => [...prev, { userId, id, title, completed }]);
+  };
+
+  const deleteTodo = (id) => {
+    setContextTodos((prev) => {
+      let tempArr = [...prev];
+      tempArr = tempArr.filter((x) => x.id !== id);
+      return tempArr;
+    });
+  };
+
   return (
     <TodoContext.Provider
       value={{
-        todos
+        todos: contextTodos,
+        addTodo,
+        deleteTodo,
       }}
     >
       {children}
     </TodoContext.Provider>
   );
 }
-export function  useTodo() {
+export function useTodo() {
   const context = useContext(TodoContext);
   if (context === undefined) {
     throw new Error("Context must be used within a Provider");
