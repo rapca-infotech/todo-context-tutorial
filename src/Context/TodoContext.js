@@ -22,11 +22,7 @@ export function TodoContextProvider({ children }) {
 
    
 
-  const addTodos = (  { userId, id, title, completed }) => {
-      
-      setContextTodos((prev) => [...prev, { userId, id, title, completed }]);
-      //  setContextTodos('');
-  };
+ 
 
   const deleteTodos = (id) => {
     setContextTodos((prev) => {
@@ -41,7 +37,7 @@ export function TodoContextProvider({ children }) {
     <TodoContext.Provider
       value={{
         todos: contextTodos,
-        addTodos,
+        setContextTodos ,
         deleteTodos,
       }}
     >

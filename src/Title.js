@@ -4,9 +4,19 @@ import { v4 as uuidv4} from "uuid";
 import {VscTrash} from 'react-icons/vsc';
 
 function Todos() {
-  const { todos, addTodos ,  deleteTodos} = useTodo();
-  const [inputTodos, setInputTodos] = useState("");
+  const { todos,setContextTodos ,  deleteTodos} = useTodo();
+  const [inputTodos, setInputTodos  ] = useState("");
   
+
+  const addTodos = (  { userId, id, title, completed }) => {
+    if (! inputTodos) {
+    } 
+    else
+     {
+      setContextTodos((prev) => [...prev, { userId, id, title, completed }]);
+      setInputTodos('');
+    }
+};
      
 
   // console.log(titles);
