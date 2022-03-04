@@ -1,43 +1,54 @@
 import React, { useState } from "react";
-import { useTodo } from "./Context/TodoContext";
+import { useTodo  } from "./Context/TodoContext";
+import { v4 as uuidv4} from "uuid";
+import {VscTrash} from 'react-icons/vsc';
 
 function Todos() {
-  const { todos, addTodo } = useTodo();
+  const { todos, addTodos ,  deleteTodos} = useTodo();
   const [inputTodos, setInputTodos] = useState("");
+  
+     
 
   // console.log(titles);
   return (
     <>
       <input
-        className=""
+
+        className="input"
         type="text"
         placeholder="Add Title....."
         value={inputTodos}
         onChange={(e) => setInputTodos(e.target.value)}
-      />
-      <button
-        onClick={() =>
-          addTodo({
-            userId: 2,
-            id: todos.length + 1,
-            title: inputTodos,
-            completed: false,
-          })
-        }
+        />
+
+      <button 
+      className="addbtn"
+      onClick={() =>
+        addTodos({
+          userId: 2,
+          id: uuidv4(),
+          title: inputTodos,
+          completed: false,
+          
+        })
+      }
       >
         Add
       </button>
 
-      <ol>
+
+      <ul>
         {todos.map((u) => (
-          <div className="card" key={u.id}>
+          <div className="card1" key={u.id}>
             <div className="card-body">
               {u.title}
-              {/* {u}  */}
+              
+      <VscTrash  className="trashbtn"  onClick={() => deleteTodos(u.id)} />
+              
             </div>
           </div>
         ))}
-      </ol>
+      </ul>
     </>
   );
 }

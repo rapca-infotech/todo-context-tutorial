@@ -4,7 +4,8 @@ const TodoContext = createContext();
 
 export function TodoContextProvider({ children }) {
   const [contextTodos, setContextTodos] = useState([]);
-
+  
+      
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
@@ -17,16 +18,22 @@ export function TodoContextProvider({ children }) {
     }
     fetchData();
   }, []);
+    
 
-  const addTodo = ({ userId, id, title, completed }) => {
-    setContextTodos((prev) => [...prev, { userId, id, title, completed }]);
+   
+
+  const addTodos = (  { userId, id, title, completed }) => {
+      
+      setContextTodos((prev) => [...prev, { userId, id, title, completed }]);
+      //  setContextTodos('');
   };
 
-  const deleteTodo = (id) => {
+  const deleteTodos = (id) => {
     setContextTodos((prev) => {
       let tempArr = [...prev];
       tempArr = tempArr.filter((x) => x.id !== id);
       return tempArr;
+     
     });
   };
 
@@ -34,8 +41,8 @@ export function TodoContextProvider({ children }) {
     <TodoContext.Provider
       value={{
         todos: contextTodos,
-        addTodo,
-        deleteTodo,
+        addTodos,
+        deleteTodos,
       }}
     >
       {children}
