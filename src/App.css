@@ -65,9 +65,9 @@
   }
   .card-body{
     box-shadow: 2px 2px 2px 2px rgb(105, 150, 158);
-    /* background-color: rgb(130, 210, 228); */
-    background: linear-gradient( 90deg,  rgb(130, 210, 228) 0%, rgb(182, 211, 235) 100%  );
+    background: linear-gradient( 90deg,  rgb(130, 210, 228) 0%, rgb(194, 218, 238) 100%  );
     margin: 0px 5px 15px 0px;
-  
+    
+    /* background-color: rgb(130, 210, 228); */
 }
 

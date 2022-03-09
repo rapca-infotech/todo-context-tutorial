@@ -2,10 +2,28 @@ import React, { useState } from "react";
 import { useTodo  } from "./Context/TodoContext";
 import { v4 as uuidv4} from "uuid";
 import {VscTrash} from 'react-icons/vsc';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Todos() {
   const { todos,setContextTodos ,  deleteTodos} = useTodo();
   const [inputTodos, setInputTodos  ] = useState("");
+
+  const addToast = () => {
+    toast('Add Title successfully ', {
+      position:"top-center",
+      theme:"colored",
+      type:"success"
+    });
+  }
+
+  const delToast = () => {
+    toast.error(' delete Title  successfully', {
+      position:"top-center",
+      theme:"colored",
+      // type:"warn"
+    });
+  }
   
 
   const addTodos = (  { userId, id, title, completed }) => {
@@ -17,7 +35,7 @@ function Todos() {
       setInputTodos('');
     }
 };
-     
+
 
   // console.log(titles);
   return (
@@ -33,7 +51,7 @@ function Todos() {
 
       <button 
       className="addbtn"
-      onClick={() =>
+      onClick={() => { addToast()
         addTodos({
           userId: 2,
           id: uuidv4(),
@@ -41,11 +59,15 @@ function Todos() {
           completed: false,
           
         })
-      }
+        
+      }}
+    
+  
       >
         Add
       </button>
 
+        <ToastContainer/>
 
       <ul>
         {todos.map((u) => (
@@ -53,7 +75,12 @@ function Todos() {
             <div className="card-body">
               {u.title}
               
-      <VscTrash  className="trashbtn"  onClick={() => deleteTodos(u.id)} />
+      <VscTrash  className="trashbtn" 
+       onClick= {() => {delToast()
+         deleteTodos
+         (u.id)
+        } }
+         />
               
             </div>
           </div>
