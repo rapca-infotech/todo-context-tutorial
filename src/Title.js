@@ -13,7 +13,8 @@ function Todos() {
     toast('Add Title successfully ', {
       position:"top-center",
       theme:"colored",
-      type:"success"
+      type:"success",
+      autoClose: 2000
     });
   }
 
@@ -21,6 +22,7 @@ function Todos() {
     toast.error(' delete Title  successfully', {
       position:"top-center",
       theme:"colored",
+      autoClose: 2000
       // type:"warn"
     });
   }
@@ -59,10 +61,7 @@ function Todos() {
           completed: false,
           
         })
-        
       }}
-    
-  
       >
         Add
       </button>
